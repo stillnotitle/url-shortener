@@ -2,6 +2,9 @@
 
 このアプリケーションは、PythonとStreamlitを使って構築されたシンプルなURL短縮サービスです。長いURLを短いURLに変換し、短縮URLを管理・アクセスするためのユーザーフレンドリーなインターフェースを提供します。
 
+## サンプルアプリ
+https://url-shortener-i3lwd2zywgvhur9guvvnpf.streamlit.app/
+
 ## 機能
 
 - 長いURLをコンパクトで共有しやすいURLに短縮
@@ -83,6 +86,9 @@
 # URL Shortener
 
 This is a simple URL shortener application built with Python and Streamlit. It allows users to create shortened URLs for long URLs and provides a user-friendly interface for managing and accessing the shortened URLs.
+
+## Sample App
+https://url-shortener-i3lwd2zywgvhur9guvvnpf.streamlit.app/
 
 ## Features
 
