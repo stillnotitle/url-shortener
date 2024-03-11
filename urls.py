@@ -1,4 +1,3 @@
-# urls.py
 import streamlit as st
 import validators
 import string
@@ -17,7 +16,7 @@ def shorten_url():
       st.error("有効なURLを入力してください。")
     else:
       short_url_id = generate_unique_short_url(original_url)
-      save_url_mapping(original_url, short_url_id)
+      save_url_mapping(original_url, short_url_id, st.session_state.user.id)
       short_url = f"{BASE_URL}/?url={short_url_id}"
       st.success(f"短縮URL: {short_url}")
 
@@ -64,7 +63,7 @@ def shorten_url_with_campaign():
       st.error("utm_source、utm_medium、utm_campaignは必須です。")
     else:
       short_url_id = generate_unique_short_url(long_url)
-      save_url_mapping(long_url, short_url_id)
+      save_url_mapping(long_url, short_url_id, st.session_state.user.id)
       short_url = f"{BASE_URL}/?url={short_url_id}"
       st.success(f"短縮URL: {short_url}")
 
