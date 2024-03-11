@@ -4,7 +4,7 @@ import string
 import random
 from models import get_original_url, save_url_mapping
 
-BASE_URL = "https://url-shortener-i3lwd2zywgvhur9guvvnpf.streamlit.app"
+BASE_URL = "https://shrturl.streamlit.app/"
 
 
 def shorten_url():
