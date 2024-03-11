@@ -30,36 +30,36 @@ def show_analytics():
   else:
     st.warning("この機能を使用するにはログインが必要です。")
 
+    def main():
+      st.title("URL Shortener")
 
-def main():
-  st.title("URL Shortener")
+      if not hasattr(st.session_state, "logged_in"):
+        st.session_state.logged_in = False
 
-  if not hasattr(st.session_state, "logged_in"):
-    st.session_state.logged_in = False
+      menu = ["ユーザー登録", "ログイン", "URL短縮", "キャンペーンパラメータ付きURL短縮", "分析情報"]
+      choice = st.sidebar.radio("メニュー", menu)
 
-  menu = ["ユーザー登録", "ログイン", "URL短縮", "キャンペーンパラメータ付きURL短縮", "分析情報"]
-  choice = st.sidebar.radio("メニュー", menu)
+      if choice == "ユーザー登録":
+        register()
+      elif choice == "ログイン":
+        login()
+      elif choice == "URL短縮":
+        if st.session_state.logged_in:
+          shorten_url()
+        else:
+          st.warning("この機能を使用するにはログインが必要です。")
+      elif choice == "キャンペーンパラメータ付きURL短縮":
+        if st.session_state.logged_in:
+          shorten_url_with_campaign()
+        else:
+          st.warning("この機能を使用するにはログインが必要です。")
+      elif choice == "分析情報":
+        show_analytics()
 
-  if choice == "ユーザー登録":
-    register()
-  elif choice == "ログイン":
-    login()
-  elif choice == "URL短縮":
-    if st.session_state.logged_in:
-      shorten_url()
-    else:
-      st.warning("この機能を使用するにはログインが必要です。")
-  elif choice == "キャンペーンパラメータ付きURL短縮":
-    if st.session_state.logged_in:
-      shorten_url_with_campaign()
-    else:
-      st.warning("この機能を使用するにはログインが必要です。")
-  elif choice == "分析情報":
-    show_analytics()
-
-  if "url" in st.experimental_get_query_params():
-    short_url_id = st.experimental_get_query_params()["url"][0]
-    redirect_url(short_url_id)
+      if not choice.startswith(
+          "URL短縮") and "url" in st.experimental_get_query_params():
+        short_url_id = st.experimental_get_query_params()["url"][0]
+        redirect_url(short_url_id)
 
 
 if __name__ == "__main__":
