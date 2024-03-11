@@ -11,15 +11,8 @@ def main():
   if not hasattr(st.session_state, "logged_in"):
     st.session_state.logged_in = False
 
-  menu = {
-      "ユーザー登録": register,
-      "ログイン": login,
-      "URL短縮": shorten_url,
-      "キャンペーンパラメータ付きURL短縮": shorten_url_with_campaign,
-      "リダイレクト": redirect_url
-  }
-
-  choice = st.sidebar.radio("メニュー", list(menu.keys()))
+  menu = ["ユーザー登録", "ログイン", "URL短縮", "キャンペーンパラメータ付きURL短縮", "リダイレクト"]
+  choice = st.sidebar.radio("メニュー", menu)
 
   if choice == "ユーザー登録":
     register()
@@ -36,7 +29,11 @@ def main():
     else:
       st.warning("この機能を使用するにはログインが必要です。")
   elif choice == "リダイレクト":
-    redirect_url()
+    if "url" in st.experimental_get_query_params():
+      short_url_id = st.experimental_get_query_params()["url"][0]
+      redirect_url(short_url_id)
+    else:
+      st.warning("短縮URLが指定されていません。")
 
 
 if __name__ == "__main__":

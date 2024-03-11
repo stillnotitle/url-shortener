@@ -1,8 +1,11 @@
+# urls.py
 import streamlit as st
 import validators
 import string
 import random
 from models import get_original_url, save_url_mapping
+
+BASE_URL = "https://url-shortener-i3lwd2zywgvhur9guvvnpf.streamlit.app"
 
 
 def shorten_url():
@@ -15,7 +18,7 @@ def shorten_url():
     else:
       short_url_id = generate_unique_short_url(original_url)
       save_url_mapping(original_url, short_url_id)
-      short_url = f"{st.query_params.get('host', [''])[0]}?url={short_url_id}"
+      short_url = f"{BASE_URL}/?url={short_url_id}"
       st.success(f"短縮URL: {short_url}")
 
 
@@ -62,7 +65,7 @@ def shorten_url_with_campaign():
     else:
       short_url_id = generate_unique_short_url(long_url)
       save_url_mapping(long_url, short_url_id)
-      short_url = f"{st.query_params.get('host', [''])[0]}?url={short_url_id}"
+      short_url = f"{BASE_URL}/?url={short_url_id}"
       st.success(f"短縮URL: {short_url}")
 
   st.write("注意事項:")
