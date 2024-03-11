@@ -67,3 +67,13 @@ def get_user_urls(user_id):
   urls = c.fetchall()
   conn.close()
   return urls
+
+
+def save_url_mapping(original_url, short_url, user_id):
+  conn = sqlite3.connect("urls.db")
+  c = conn.cursor()
+  c.execute(
+      "INSERT INTO urls (user_id, original_url, short_url) VALUES (?, ?, ?)",
+      (user_id, original_url, short_url))
+  conn.commit()
+  conn.close()
