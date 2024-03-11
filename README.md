@@ -13,55 +13,64 @@ https://url-shortener-i3lwd2zywgvhur9guvvnpf.streamlit.app/
 - URLの検証：入力されたURLが有効であることを確認
 - データベースストレージ：短縮URLと元のURLのマッピングをSQLiteデータベースに保存
 - エラーハンドリング：無効な入力に対して分かりやすいエラーメッセージを表示
+- ユーザー認証：ユーザー登録とログイン機能を提供し、ユーザーが自分の短縮URLを管理できるようにする
+- キャンペーンパラメータの追加：Google Analyticsのカスタムキャンペーンを計測するためのパラメータを追加できる
 
 ## インストール
 
 1. リポジトリをクローン：
-   ```
-   git clone https://github.com/yourusername/url-shortener.git
-   ```
+git clone https://github.com/yourusername/url-shortener.git
+
+
+Copy code
 
 2. プロジェクトディレクトリに移動：
-   ```
-   cd url-shortener
-   ```
+cd url-shortener
+
+
+Copy code
 
 3. 仮想環境を作成：
-   ```
-   python -m venv venv
-   ```
+python -m venv venv
+
+
+Copy code
 
 4. 仮想環境をアクティベート：
-   - Windows の場合：
-     ```
-     venv\Scripts\activate
-     ```
-   - macOS と Linux の場合：
-     ```
-     source venv/bin/activate
-     ```
+- Windows の場合：
+  ```
+  venv\Scripts\activate
+  ```
+- macOS と Linux の場合：
+  ```
+  source venv/bin/activate
+  ```
 
 5. 必要な依存関係をインストール：
-   ```
-   pip install -r requirements.txt
-   ```
+pip install -r requirements.txt
+
+
+Copy code
 
 ## 使い方
 
 1. アプリケーションを起動：
-   ```
-   streamlit run app.py
-   ```
+streamlit run app.py
+
+
+Copy code
 
 2. Webブラウザを開き、`http://localhost:8501` にアクセスしてアプリケーションを使用。
 
-3. 目的のアクションを選択：
-   - URLを短縮するには、サイドバーから「Shorten URL」を選択し、長いURLを入力します。必要に応じてカスタムの短縮URLを指定できます。「Shorten」ボタンをクリックして、短縮URLを生成します。
-   - 短縮URLにアクセスするには、サイドバーから「Redirect」を選択し、短縮URLを入力します。「Redirect」ボタンをクリックすると、元の長いURLにリダイレクトされます。
+3. サイドバーからアクションを選択：
+- ユーザー登録：新しいアカウントを作成します。
+- ログイン：既存のアカウントにログインします。
+- URL短縮：長いURLを入力し、必要に応じてカスタムの短縮URLを指定します。「短縮」ボタンをクリックして、短縮URLを生成します。
+- キャンペーンパラメータ付きURL短縮：ウェブサイトURLとキャンペーンパラメータを入力し、「短縮URLを生成」ボタンをクリックして、パラメータ付きの短縮URLを生成します。
+- リダイレクト：短縮URLを入力し、「リダイレクト」ボタンをクリックすると、元の長いURLにリダイレクトされます。
 
 ## 今後の改善点
 
-- ユーザー認証：ユーザー登録とログイン機能を実装し、ユーザーが自分の短縮URLを管理できるようにする。
 - URL の有効期限：短縮URLに有効期限を設定する機能を追加し、有効期限が切れると短縮URLにアクセスできなくなるようにする。
 - クリックトラッキング：各短縮URLのクリック数を追跡し、ユーザーに分析情報を提供する。
 - APIエンドポイント：短縮URLをプログラムで作成・アクセスするためのAPIエンドポイントを公開する。
@@ -98,55 +107,64 @@ https://url-shortener-i3lwd2zywgvhur9guvvnpf.streamlit.app/
 - URL validation: Ensures that the entered URLs are valid
 - Database storage: Uses SQLite to store the mapping between short and long URLs
 - Error handling: Provides informative error messages for invalid inputs
+- User authentication: Provides user registration and login functionality to allow users to manage their own shortened URLs
+- Campaign parameter addition: Allows users to add parameters for measuring Google Analytics custom campaigns
 
 ## Installation
 
 1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/url-shortener.git
-   ```
+git clone https://github.com/yourusername/url-shortener.git
+
+
+Copy code
 
 2. Change into the project directory:
-   ```
-   cd url-shortener
-   ```
+cd url-shortener
+
+
+Copy code
 
 3. Create a virtual environment:
-   ```
-   python -m venv venv
-   ```
+python -m venv venv
+
+
+Copy code
 
 4. Activate the virtual environment:
-   - For Windows:
-     ```
-     venv\Scripts\activate
-     ```
-   - For macOS and Linux:
-     ```
-     source venv/bin/activate
-     ```
+- For Windows:
+  ```
+  venv\Scripts\activate
+  ```
+- For macOS and Linux:
+  ```
+  source venv/bin/activate
+  ```
 
 5. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+pip install -r requirements.txt
+
+
+Copy code
 
 ## Usage
 
 1. Run the application:
-   ```
-   streamlit run app.py
-   ```
+streamlit run app.py
+
+
+Copy code
 
 2. Open a web browser and go to `http://localhost:8501` to access the application.
 
-3. Choose the desired action:
-   - To shorten a URL, select "Shorten URL" from the sidebar, enter the long URL, and optionally specify a custom short URL. Click the "Shorten" button to generate the shortened URL.
-   - To access a shortened URL, select "Redirect" from the sidebar, enter the short URL, and click the "Redirect" button to be redirected to the original long URL.
+3. Choose the desired action from the sidebar:
+- User Registration: Create a new account.
+- Login: Log in to an existing account.
+- Shorten URL: Enter a long URL and optionally specify a custom short URL. Click the "Shorten" button to generate the shortened URL.
+- Shorten URL with Campaign Parameters: Enter the website URL and campaign parameters. Click the "Generate Short URL" button to generate a shortened URL with the parameters.
+- Redirect: Enter a short URL and click the "Redirect" button to be redirected to the original long URL.
 
 ## Future Enhancements
 
-- User authentication: Implement user registration and login functionality to allow users to manage their own shortened URLs.
 - URL expiration: Add the ability to set expiration dates for shortened URLs, after which they will no longer be accessible.
 - Click tracking: Track the number of clicks on each shortened URL to provide analytics to users.
 - API endpoints: Expose API endpoints for creating and accessing shortened URLs programmatically.
