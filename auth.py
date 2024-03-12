@@ -7,15 +7,15 @@ from models import User, save_url_mapping
 
 def create_user(username, email, password):
   password_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
-  user = User(username, email, password_hash)
   conn = sqlite3.connect("urls.db")
   c = conn.cursor()
   try:
     c.execute(
         "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)",
-        (user.username, user.email, user.password_hash))
+        (username, email, password_hash))
     conn.commit()
-    return True
+    user_id = c.lastrowid # 新しく挿入された行のIDを取得
+    return User(username, email, password_hash, user_id) # Userオブジェクトを返す
   except sqlite3.IntegrityError:
     return False
   finally:
@@ -32,7 +32,7 @@ def authenticate_user(username, password):
   if user:
     password_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
     if password_hash == user[3]:
-      return User(user[1], user[2], user[3])
+      return User(user[1], user[2], user[3], user[0]) # ユーザーIDを渡す
 
   return None
 

@@ -3,25 +3,48 @@ import validators
 import string
 import random
 from models import get_original_url, save_url_mapping
+import logging
+
+logger = logging.getLogger(__name__)
 
 BASE_URL = "https://shrturl.streamlit.app/"
 
 def shorten_url():
     st.subheader("URL短縮")
     original_url = st.text_input("短縮するURLを入力してください:")
+    custom_url = st.text_input("カスタムURL（オプション）:")
+
+    st.write("カスタムURLの要件:")
+    st.write("- 4文字以上20文字以下")
+    st.write("- 英数字のみ使用可能")
 
     if st.button("短縮"):
         if not validators.url(original_url):
             st.error("有効なURLを入力してください。")
         else:
-            short_url_id = generate_unique_short_url(original_url)
+            if custom_url:
+                if not is_valid_custom_url(custom_url):
+                    st.error("カスタムURLは4文字以上20文字以下の英数字のみ使用できます。")
+                elif get_original_url(custom_url):
+                    st.error("このカスタムURLは既に使用されています。")
+                else:
+                    short_url_id = custom_url
+            else:
+                short_url_id = generate_unique_short_url(original_url)
             if st.session_state.logged_in:
                 user_id = st.session_state.user.id
             else:
                 user_id = None
-            save_url_mapping(original_url, short_url_id, user_id)
-            short_url = f"{BASE_URL}?url={short_url_id}"
-            st.success(f"短縮URL: {short_url}")
+            short_url = save_url_mapping(original_url, short_url_id, user_id)
+            if short_url:
+                st.success(f"短縮URL: {BASE_URL}?url={short_url}")
+            else:
+                st.error("短縮URLの生成に失敗しました。")
+
+def is_valid_custom_url(custom_url):
+    if len(custom_url) < 4 or len(custom_url) > 20:
+        return False
+    return re.match(r'^[a-zA-Z0-9]+$', custom_url) is not None
 
 def shorten_url_with_campaign():
     st.subheader("キャンペーンパラメータ付きURL短縮")
@@ -56,9 +79,11 @@ def shorten_url_with_campaign():
                 user_id = st.session_state.user.id
             else:
                 user_id = None
-            save_url_mapping(long_url, short_url_id, user_id)
-            short_url = f"{BASE_URL}?url={short_url_id}"
-            st.success(f"短縮URL: {short_url}")
+            short_url = save_url_mapping(original_url, short_url_id, user_id)
+            if short_url:
+                st.success(f"短縮URL: {BASE_URL}?url={short_url}")
+            else:
+                st.error("短縮URLの生成に失敗しました。")
 
     st.write("注意事項:")
     st.write("- URL にパラメータを追加する際は、どのようなケースでも `utm_source`、`utm_medium`、`utm_campaign` を使用する必要があります。")
