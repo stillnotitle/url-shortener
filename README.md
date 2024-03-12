@@ -4,7 +4,7 @@
 
 ## サンプルアプリ
 
-[https://url-shortener.streamlit.app/](https://shrturl.streamlit.app/)
+https://shrturl.streamlit.app/
 
 ## 機能
 
