@@ -1,85 +1,91 @@
 # URL Shortener
 
-このアプリケーションは、PythonとStreamlitを使って構築されたシンプルなURL短縮サービスです。長いURLを短いURLに変換し、短縮URLを管理・アクセスするためのユーザーフレンドリーなインターフェースを提供します。
+このアプリケーションは、PythonとStreamlitを使用して構築されたシンプルなURLショートナーです。長いURLに対して短縮されたURLを作成することができ、短縮されたURLを管理してアクセスするためのユーザーフレンドリーなインターフェースを提供します。
 
 ## サンプルアプリ
-https://url-shortener-i3lwd2zywgvhur9guvvnpf.streamlit.app/
+
+https://url-shortener.streamlit.app/
 
 ## 機能
 
-- 長いURLをコンパクトで共有しやすいURLに短縮
-- カスタムURLのサポート：ユーザーは必要に応じてカスタムの短縮URLを指定可能
-- リダイレクト：短縮URLをクリックすると元の長いURLにリダイレクト
-- URLの検証：入力されたURLが有効であることを確認
-- データベースストレージ：短縮URLと元のURLのマッピングをSQLiteデータベースに保存
-- エラーハンドリング：無効な入力に対して分かりやすいエラーメッセージを表示
-- ユーザー認証：ユーザー登録とログイン機能を提供し、ユーザーが自分の短縮URLを管理できるようにする
-- キャンペーンパラメータの追加：Google Analyticsのカスタムキャンペーンを計測するためのパラメータを追加できる
+- ユーザー登録とログイン機能
+- オプションのカスタムURLを使用したURL短縮
+- UTMトラッキングのためのキャンペーンパラメータサポート
+- クリックトラッキングと分析
+- Altairを使用したグラフによるクリック分析の可視化
+- 分析テストのための手動クリック登録
+- エラー処理とログ記録
 
 ## インストール
 
-1. リポジトリをクローン：
-git clone https://github.com/yourusername/url-shortener.git
+1. リポジトリをクローンします:
 
+   ```
+   git clone https://github.com/stillnotitle/url-shortener.git
+   ```
 
-Copy code
+2. プロジェクトディレクトリに移動します:
 
-2. プロジェクトディレクトリに移動：
-cd url-shortener
+   ```
+   cd url-shortener
+   ```
 
+3. 仮想環境を作成します:
 
-Copy code
+   ```
+   python -m venv venv
+   ```
 
-3. 仮想環境を作成：
-python -m venv venv
+4. 仮想環境をアクティベートします:
 
+   - Windowsの場合:
 
-Copy code
+     ```
+     venv\Scripts\activate
+     ```
 
-4. 仮想環境をアクティベート：
-- Windows の場合：
-  ```
-  venv\Scripts\activate
-  ```
-- macOS と Linux の場合：
-  ```
-  source venv/bin/activate
-  ```
+   - macOSとLinuxの場合:
 
-5. 必要な依存関係をインストール：
-pip install -r requirements.txt
+     ```
+     source venv/bin/activate
+     ```
 
+5. 必要な依存関係をインストールします:
 
-Copy code
+   ```
+   pip install -r requirements.txt
+   ```
 
-## 使い方
+## 使用方法
 
-1. アプリケーションを起動：
-streamlit run app.py
+1. アプリケーションを実行します:
 
+   ```
+   streamlit run app.py
+   ```
 
-Copy code
+2. ウェブブラウザを開き、`http://localhost:8501`にアクセスしてアプリケーションを使用します。
 
-2. Webブラウザを開き、`http://localhost:8501` にアクセスしてアプリケーションを使用。
+3. 新しいアカウントを登録するか、既存のアカウントにログインします。
 
-3. サイドバーからアクションを選択：
-- ユーザー登録：新しいアカウントを作成します。
-- ログイン：既存のアカウントにログインします。
-- URL短縮：長いURLを入力し、必要に応じてカスタムの短縮URLを指定します。「短縮」ボタンをクリックして、短縮URLを生成します。
-- キャンペーンパラメータ付きURL短縮：ウェブサイトURLとキャンペーンパラメータを入力し、「短縮URLを生成」ボタンをクリックして、パラメータ付きの短縮URLを生成します。
-- リダイレクト：短縮URLを入力し、「リダイレクト」ボタンをクリックすると、元の長いURLにリダイレクトされます。
+4. サイドバーから目的のアクションを選択します:
 
-## 今後の改善点
+   - **URL短縮**: 長いURLを入力し、必要に応じてカスタムの短いURLを指定します。"短縮"ボタンをクリックして、短縮されたURLを生成します。
+   - **キャンペーンパラメータ付きURL短縮**: ウェブサイトのURLとキャンペーンパラメータ（UTMソース、メディア、キャンペーン、ターム、コンテンツ）を入力します。"短縮URLを生成"ボタンをクリックして、パラメータ付きの短縮URLを生成します。
+   - **分析**: ドロップダウンから短縮URLを選択して、そのクリック分析を表示します。合計クリック数、ユニークビジター数、クリックトレンド、リファラー分布が表示されます。
+   - **手動クリック登録**: 短縮URL、リファラー、ユーザーエージェント、IPアドレスを入力して、テスト目的でクリックを手動で登録します。
 
-- URL の有効期限：短縮URLに有効期限を設定する機能を追加し、有効期限が切れると短縮URLにアクセスできなくなるようにする。
-- クリックトラッキング：各短縮URLのクリック数を追跡し、ユーザーに分析情報を提供する。
-- APIエンドポイント：短縮URLをプログラムで作成・アクセスするためのAPIエンドポイントを公開する。
-- UIの改善：ユーザーエクスペリエンスを向上させるために、より多くのスタイリングと視覚的な要素を使ってユーザーインターフェースを強化する。
-- コンテナ化：アプリケーションをDockerizeして、デプロイとスケーラビリティを容易にする。
+## 今後の機能拡張
+
+- ユーザー固有の短縮URLリストと管理機能の実装
+- URL有効期限機能の追加
+- 短縮URLをプログラムで作成してアクセスするためのAPIエンドポイントの公開
+- より多くのスタイリングとビジュアル要素によるユーザーインターフェースのさらなる改善
+- デプロイとスケーラビリティを容易にするためのアプリケーションのDockerize
 
 ## 貢献
 
-貢献は大歓迎です！何か問題を見つけたり、改善のための提案がある場合は、Issueを開くかプルリクエストを送ってください。
+貢献は大歓迎です！問題を見つけたり、改善のための提案がある場合は、Issueを開くかPull Requestを提出してください。
 
 ## ライセンス
 
@@ -91,97 +97,4 @@ Copy code
 - [Streamlit](https://streamlit.io/)
 - [SQLite](https://www.sqlite.org/)
 - [Validators](https://validators.readthedocs.io/)
-
-# URL Shortener
-
-This is a simple URL shortener application built with Python and Streamlit. It allows users to create shortened URLs for long URLs and provides a user-friendly interface for managing and accessing the shortened URLs.
-
-## Sample App
-https://url-shortener-i3lwd2zywgvhur9guvvnpf.streamlit.app/
-
-## Features
-
-- Shorten long URLs into compact, easy-to-share URLs
-- Custom URL support: Users can optionally specify a custom short URL
-- Redirection: Shortened URLs redirect to the original long URLs
-- URL validation: Ensures that the entered URLs are valid
-- Database storage: Uses SQLite to store the mapping between short and long URLs
-- Error handling: Provides informative error messages for invalid inputs
-- User authentication: Provides user registration and login functionality to allow users to manage their own shortened URLs
-- Campaign parameter addition: Allows users to add parameters for measuring Google Analytics custom campaigns
-
-## Installation
-
-1. Clone the repository:
-git clone https://github.com/yourusername/url-shortener.git
-
-
-Copy code
-
-2. Change into the project directory:
-cd url-shortener
-
-
-Copy code
-
-3. Create a virtual environment:
-python -m venv venv
-
-
-Copy code
-
-4. Activate the virtual environment:
-- For Windows:
-  ```
-  venv\Scripts\activate
-  ```
-- For macOS and Linux:
-  ```
-  source venv/bin/activate
-  ```
-
-5. Install the required dependencies:
-pip install -r requirements.txt
-
-
-Copy code
-
-## Usage
-
-1. Run the application:
-streamlit run app.py
-
-
-Copy code
-
-2. Open a web browser and go to `http://localhost:8501` to access the application.
-
-3. Choose the desired action from the sidebar:
-- User Registration: Create a new account.
-- Login: Log in to an existing account.
-- Shorten URL: Enter a long URL and optionally specify a custom short URL. Click the "Shorten" button to generate the shortened URL.
-- Shorten URL with Campaign Parameters: Enter the website URL and campaign parameters. Click the "Generate Short URL" button to generate a shortened URL with the parameters.
-- Redirect: Enter a short URL and click the "Redirect" button to be redirected to the original long URL.
-
-## Future Enhancements
-
-- URL expiration: Add the ability to set expiration dates for shortened URLs, after which they will no longer be accessible.
-- Click tracking: Track the number of clicks on each shortened URL to provide analytics to users.
-- API endpoints: Expose API endpoints for creating and accessing shortened URLs programmatically.
-- UI improvements: Enhance the user interface with more styling and visual elements to provide a better user experience.
-- Containerization: Dockerize the application for easier deployment and scalability.
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Acknowledgements
-
-- [Python](https://www.python.org/)
-- [Streamlit](https://streamlit.io/)
-- [SQLite](https://www.sqlite.org/)
-- [Validators](https://validators.readthedocs.io/)
+- [Altair](https://altair-viz.github.io/)
